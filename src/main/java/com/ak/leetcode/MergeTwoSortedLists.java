@@ -9,13 +9,35 @@ public class MergeTwoSortedLists {
     private List<Integer> ll2 = new ArrayList<>();
     private List<Integer> ll3 = new ArrayList<>();
 
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+    public static void main(String[] args) {
+        callMergeTwoSortedLists();
+    }
+
+    public static void callMergeTwoSortedLists() {
+        ListNode l1 = new ListNode(1,
+            new ListNode(2,
+                new ListNode(4)));
+        ListNode l2 = new ListNode(1,
+            new ListNode(3,
+                new ListNode(4)));
+
+        MergeTwoSortedLists s = new MergeTwoSortedLists();
+        s.mergeTwoLists(l1, l2);
+
+        l1 = new ListNode();
+        l2 = new ListNode();
+
+        s.mergeTwoLists(null, null);
+    }
+
+
+    public void mergeTwoLists(ListNode list1, ListNode list2) {
         getList(ll1, list1);
         getList(ll2, list2);
 
         getMergedList(ll1, ll2, ll3);
 
-        return getResultListNodeForLL(ll3);
+        getResultListNodeForLL(ll3);
     }
 
     private void getMergedList(List<Integer> ll1, List<Integer> ll2, List<Integer> ll3) {
