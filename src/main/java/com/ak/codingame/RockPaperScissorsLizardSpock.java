@@ -3,7 +3,6 @@ package com.ak.codingame;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class RockPaperScissorsLizardSpock {
@@ -29,7 +28,7 @@ public class RockPaperScissorsLizardSpock {
         }
     }*/
 
-    public static void main() {
+    public static void main(String args[]) {
         int N = Integer.valueOf(input[0]); //number of participants
         List<Player> players = new ArrayList<>();
         for (int i = 1; i < N * 2; i = i + 2) {
@@ -61,6 +60,17 @@ public class RockPaperScissorsLizardSpock {
     private static List<Player> playRound(List<Player> players) {
         // To debug: System.err.println("Debug messages...");
         System.err.println("New Round, players count = " + players.size());
+
+        players.stream().map(x -> {
+            if(players.indexOf(x)%2 == 0) {
+             Player p1 = x;
+             Player p2 = players.get(players.indexOf(x) + 1);
+                Optional<Player> playerOpt = Player.play(p1, p2);
+                if (playerOpt.isPresent()) return playerOpt.get();
+            }
+            return null;
+        }).forEach(System.out::println);
+        System.out.println("STOP");
         List<Player> players1 =
                 players.stream()
                         .filter(x -> (players.indexOf(x) % 2 == 0))
